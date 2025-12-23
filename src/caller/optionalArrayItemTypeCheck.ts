@@ -2,7 +2,7 @@
 import type {Stream} from 'node:stream';
 
 // Import: Self-created functions.
-import {arrayItemTypeCheck} from "./arrayItemTypeCheck.ts";
+import {arrayItemTypeCheck} from "./arrayItemTypeCheck.js";
 
 /**
  * Short performant checks for optionalTypeCheck common types in arrays.
