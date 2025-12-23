@@ -74,9 +74,8 @@
 
     // 2025-07-16: Specify how TypeScript looks up a file from a given module specifier.
     "moduleResolution": "NodeNext",
-
-    // 2025-07-16: Allow importing TypeScript files with a `.ts` extension when `allowJs` is enabled.
-    "allowImportingTsExtensions": true,
+    // 2025-12-22: Allow importing TypeScript files with a `.ts` extension when `allowJs` is enabled.
+    "allowImportingTsExtensions": false,
 
     // Allow accessing UMD globals from modules.
     // "allowUmdGlobalAccess": true,
@@ -89,8 +88,6 @@
 
     // 2025-12-19: Only packages listed will be included in the global scope.
     "types": [
-      "express",
-      "jest",
       "node"
     ],
 
@@ -98,7 +95,7 @@
      * JavaScript Support
      */
     // 2025-07-16: Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files.
-    "allowJs": false,
+    "allowJs": true,
 
     // 2025-07-16: Enable error reporting in type-checked JavaScript files.
     "checkJs": true,
@@ -132,9 +129,8 @@
 
     // 2025-12-19: Specify an output folder for all emitted files.
     "outDir": "./dist",
-
-    // 2024-07-10: Disable emitting comments
-    "removeComments": true,
+    // 2025-12-23: Disable emitting comments. Should be always set to false for libraries (npm).
+    "removeComments": false,
 
     // Disable emitting files from a compilation.
     // "noEmit": true,
@@ -261,7 +257,7 @@
     "noFallthroughCasesInSwitch": true,
 
     // 2025-12-08: Type catch clause variables as 'unknown' instead of 'any'.
-    "useUnknownInCatchVariables": true,
+    "useUnknownInCatchVariables": true
 
     /**
      * React / JSX
