@@ -1,214 +1,257 @@
 // Import: Build-ins.
-import { Stream } from 'stream';
+import type {Stream} from 'node:stream';
 
 // Import: Self-created functions.
-import {toss} from "../utils/toss.js";
-import {booleanCheck} from "./booleanCheck.ts";
-import {getClass} from "../utils/getClass.js";
-import {isDebugMode} from "../utils/isDebugMode.js";
-import {shouldSkip} from "../utils/shouldSkip.ts";
+import {typeCheck} from "./typeCheck.js";
 
 /**
  * Short performant optionalTypeCheck checks for common types.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-18
+ * @version 2025-12-23
  */
 export const optionalTypeCheck =
 {
-  optionalArray: (arg: any, label: string): asserts arg is any[] | undefined | null =>
+  // Checks for an optional array.
+  optionalArray: (argument: unknown, label: string): asserts argument is unknown[] | undefined | null =>
   {
     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.array(arg)) {
-      toss(label, 'isArray', arg, 'Array.isArray');
-    }
+    typeCheck.array(argument, label);
   },
 
-  optionalBigInt: (arg: any, label: string): asserts arg is bigint | undefined | null =>
+  // Checks for an optional big integer.
+  optionalBigInt: (argument: unknown, label: string): asserts argument is bigint | undefined | null =>
   {
     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.bigint(arg)) {
-      toss(label, 'isBigint', arg);
-    }
+    typeCheck.bigInt(argument, label);
   },
 
   // Alias for "optionalBoolean".
-  optionalBool: (arg: any, label: string): asserts arg is boolean | undefined | null =>
-    optionalTypeCheck.optionalBoolean(arg, label),
+  optionalBool: (argument: unknown, label: string): asserts argument is boolean | undefined | null =>
+    optionalTypeCheck.optionalBoolean(argument, label),
 
-  optionalBoolean: (arg: any, label: string): asserts arg is boolean | undefined | null =>
+  // Checks for an optional boolean.
+  optionalBoolean: (argument: unknown, label: string): asserts argument is boolean | undefined | null =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.bool(arg)) {
-      toss(label, 'boolean', arg);
-    }
+    typeCheck.boolean(argument, label);
   },
 
-  optionalBuffer: (arg: any, label: string): asserts arg is Buffer | undefined | null =>
+  // Checks for an optional buffer.
+  optionalBuffer: (argument: unknown, label: string): asserts argument is Buffer | undefined | null =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.buffer(arg)) {
-      toss(label, 'buffer', arg, 'Buffer.isBuffer');
-    }
+    typeCheck.buffer(argument, label);
   },
 
-  optionalDate: (arg: any, label: string): asserts arg is Date | undefined | null =>
+  // Checks for an optional date.
+  optionalDate: (argument: unknown, label: string): asserts argument is Date | undefined | null =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.date(arg)) {
-      toss(label, 'date', arg, 'instanceof', getClass);
-    }
+    typeCheck.date(argument, label);
   },
 
-  optionalFinite: (arg: any, label: string): asserts arg is number | undefined | null =>
+  // Checks for an optional finite number.
+  optionalFinite: (argument: unknown, label: string): asserts argument is number | undefined | null =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.finite(arg)) {
-      toss(label, 'finite', arg);
-    }
+    typeCheck.finite(argument, label);
   },
 
   // Alias of "optionalFunction".
-  optionalFunc: (arg: any, label: string): asserts arg is Function | undefined | null =>
-    optionalTypeCheck.optionalFunction(arg, label),
+  optionalFunc: (argument: unknown, label: string): asserts argument is Function | undefined | null =>
+    optionalTypeCheck.optionalFunction(argument, label),
 
-  optionalFunction: (arg: any, label: string): asserts arg is Function | undefined | null =>
+  // Checks for an optional function.
+  optionalFunction: (argument: unknown, label: string): asserts argument is Function | undefined | null =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.func(arg)) {
-      toss(label, 'function', arg);
-    }
+    typeCheck.function(argument, label);
   },
 
-  optionalInteger: (arg: any, label: string): asserts arg is number | undefined | null => {
-    if (!booleanCheck.integer(arg)) {
-      toss(label, 'integer', arg);
-    }
-  },
-
-  optionalNull: (arg: any, label: string): asserts arg is null | undefined => {
-    if (isDebugMode && arg != null) {
-      toss(label, 'null', arg);
-    }
-  },
-
-  optionalNumber: (arg: any, label: string): asserts arg is number | undefined | null =>
+  // Checks for an optional integer.
+  optionalInteger: (argument: unknown, label: string): asserts argument is number | undefined | null =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.number(arg)) {
-      toss(label, 'number', arg);
-    }
+    typeCheck.integer(argument, label);
   },
 
-  optionalObject: (arg: any, label: string): asserts arg is object | undefined | null =>
+  // Checks for an optional null value.
+  optionalNull: (argument: unknown, label: string): asserts argument is null | undefined =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.object(arg)) {
-      toss(label, 'object', arg);
-    }
+    typeCheck.null(argument, label);
   },
 
-  optionalPlainObject: (arg: any, label: string): asserts arg is object | undefined | null => {
-    if (!booleanCheck.plainObject(arg)) {
-      toss(label, 'object', arg);
-    }
-  },
-
-  optionalRegexp: (arg: any, label: string): asserts arg is RegExp | undefined | null =>
+  // Checks for an optional null or undefined value.
+  optionalNullOrUndefined: (argument: unknown, label: string): asserts argument is null | undefined =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.regexp(arg)) {
-      toss(label, 'regexp', arg, 'instanceof', getClass);
-    }
+    typeCheck.nullOrUndefined(argument, label);
   },
 
-  // Optional Node.js streams.
-  optionalStream: (arg: any, label: string): asserts arg is Stream | undefined | null =>
+  // Checks for an optional number.
+  optionalNumber: (argument: unknown, label: string): asserts argument is number | undefined | null =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.stream(arg)) {
-      toss(label, 'stream', arg, 'instanceof', getClass);
-    }
+    typeCheck.number(argument, label);
   },
 
-  optionalString: (arg: any, label: string): asserts arg is string | undefined | null =>
+  // Checks for an optional object.
+  optionalObject: (argument: unknown, label: string): asserts argument is object | undefined | null =>
   {
-     // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.string(arg)) {
-      toss(label, 'string', arg);
-    }
+    typeCheck.object(argument, label);
   },
 
-  optionalSymbol: (arg: any, label: string): asserts arg is symbol | undefined | null => {
-    if (!booleanCheck.symbol(arg)) {
-      toss(label, 'symbol', arg);
+  // Checks for an optional plain object.
+  optionalPlainObject: (argument: unknown, label: string): asserts argument is object | undefined | null =>
+  {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
+      return;
     }
+
+    typeCheck.plainObject(argument, label);
   },
 
-  optionalUndefined: (arg: any, label: string): asserts arg is undefined | null => {
-    if (typeof arg !== 'undefined') {
-      toss(label, 'undefined', arg);
+  // Checks for an optional promise.
+  optionalPromise: (argument: unknown, label: string): asserts argument is Promise<unknown> | undefined | null =>
+  {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
+      return;
     }
+
+    typeCheck.promise(argument, label);
+  },
+
+  // Checks for an optional regular expression.
+  optionalRegEx: (argument: unknown, label: string): asserts argument is RegExp | undefined | null =>
+  {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
+      return;
+    }
+
+    typeCheck.regEx(argument, label);
+  },
+
+  // Alias for "optionalRegEx".
+  optionalRegexp: (argument: unknown, label: string): asserts argument is RegExp | undefined | null =>
+    optionalTypeCheck.optionalRegEx(argument, label),
+
+  // Checks for an optional Node.js stream.
+  optionalStream: (argument: unknown, label: string): asserts argument is Stream | undefined | null =>
+  {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
+      return;
+    }
+
+    typeCheck.stream(argument, label);
+  },
+
+  // Checks for an optional string.
+  optionalString: (argument: unknown, label: string): asserts argument is string | undefined | null =>
+  {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
+      return;
+    }
+
+    typeCheck.string(argument, label);
+  },
+
+  // Checks for an optional symbol.
+  optionalSymbol: (argument: unknown, label: string): asserts argument is symbol | undefined | null =>
+  {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
+      return;
+    }
+
+    typeCheck.symbol(argument, label);
+  },
+
+  // Checks for an optional undefined value.
+  optionalUndefined: (argument: unknown, label: string): asserts argument is undefined | null =>
+  {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
+      return;
+    }
+
+    typeCheck.undefined(argument, label);
   },
 
   // Optional Unique Universal Identifier.
-  optionalUuid: (arg: any, label: string): asserts arg is string | undefined | null =>
+  optionalUuid: (argument: unknown, label: string): asserts argument is string | undefined | null =>
   {
      // Skip check if arg is undefined or null.
-    if (shouldSkip(arg)) {
+    if (argument == null) {
       return;
     }
 
-    if (!booleanCheck.uuid(arg)) {
-      toss(label, 'uuid', arg, 'isUUID');
+    typeCheck.uuid(argument, label);
+  },
+
+  // Check if an optional date is valid.
+  optionalValidDate: (argument: unknown, label: string): asserts argument is Date | undefined | null =>
+  {
+    // Skip check if arg is undefined or null.
+    if (argument == null) {
+      return;
     }
-  }
+
+    typeCheck.validDate(argument, label);
+  },
 }
