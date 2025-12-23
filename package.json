@@ -1,22 +1,27 @@
 {
   "author": "Roland Milto (https://roland.milto.de/)",
+  "homepage": "https://roland.milto.de/projekte/argument-assertions#node-assert-plus",
   "name": "@argument-assertions/node-assert-plus",
-  "version": "2025.12.18",
+  "version": "2025.12.23",
   "license": "MIT",
   "description": "Node.js assertion library on top of the built-in assert module with strict and flexible validation. Much more secure and up to 10 times faster than the original 'node-assert-plus', 80 % less CPU usage and memory consumption.",
   "repository": {
     "type": "git",
     "url": "https://github.com/roland-milto/node-assert-plus.git"
   },
+  "bugs": {
+    "url": "https://github.com/roland-milto/node-assert-plus/issues"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18.0.0"
   },
   "type": "module",
   "sideEffects": false,
@@ -29,9 +34,10 @@
     "vitest": "^4.0.16"
   },
   "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "build": "tsc -p tsconfig.json",
     "watch": "tsc -w -p tsconfig.json"
   },
   "keywords": [
@@ -42,7 +48,10 @@
     "assertions",
     "asserts",
     "asserts plus",
+    "data validation",
+    "datatype validation",
     "nodejs",
+    "runtime assertion",
     "testing",
     "testings",
     "testing library",
