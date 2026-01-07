@@ -3,7 +3,7 @@ import type {Stream} from "node:stream";
 import type {ArrayItemTypeCheck} from "./interface.js";
 
 // Import: Third-party modules.
-import {type} from '@type-check/strict'; 
+import {type} from '@type-check/guards'; 
 
 // Import: Self-created functions.
 import {toss} from "../utils/toss.js";

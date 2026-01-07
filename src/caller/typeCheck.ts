@@ -3,7 +3,7 @@ import type {Stream} from 'node:stream';
 import type {TypeCheck} from "./interface.js";
 
 // Import: Third-party modules
-import {type} from "@type-check/strict";
+import {type} from "@type-check/guards";
 
 // Import: Self-created functions.
 import {toss} from "../utils/toss.js";
@@ -279,7 +279,7 @@ export const typeCheck: TypeCheck =
     }
 
     if (!type.isValidDate(argument)) {
-      toss(label, 'valid date', argument, '@type-check/strict/isValidDate');
+      toss(label, 'valid date', argument, '@type-check/guards/isValidDate');
     }
   }
 }

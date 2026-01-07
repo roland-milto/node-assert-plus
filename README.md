@@ -123,7 +123,6 @@ import '@argument-assertions/node-assert-plus/register-global';
 All methods that *are not* part of Node’s core `assert` API are assumed to take the **value** to validate followed by a 
 string **label**, e.g. `assert.FUNCTIONNAME(value, label)`.
 This label is not interpreted as a message.
-If the assertion fails, an `AssertionError` is thrown with a message in the following form:
 
 ```js
 process.env["NODE_ENV"] = 'development';          // Can be *any* string to enable strict mode
@@ -146,7 +145,7 @@ assert.plainObject(new Date(), "date");           // Will be ignored in producti
 ```
 
 The best way is to control the development mode via the environment variables of 
-the code editor(e.g., WebStorm, Visual Studio Code, etc.).
+the code editor (e.g., WebStorm, Visual Studio Code, etc.).
 
 It is enough not to set `process.env.NODE_ENV` in order for production mode to be recognized.
 Assertions can be disabled any time with `process.env.["NODE_ENV"] = "production"`.

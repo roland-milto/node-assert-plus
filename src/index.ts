@@ -1,3 +1,6 @@
+// Import: Build-ins.
+import nodeAssert from "node:assert/strict";
+
 // Import: Self-created functions.
 import {typeCheck} from "./caller/typeCheck.js";
 import {optionalTypeCheck} from "./caller/optionalTypeCheck.js";
@@ -14,5 +17,6 @@ export const assert = {
   ...typeCheck,
   ...optionalTypeCheck,
   ...arrayItemTypeCheck,
-  ...optionalArrayItemTypeCheck
+  ...optionalArrayItemTypeCheck,
+  ...nodeAssert
 };

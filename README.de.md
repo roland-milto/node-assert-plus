@@ -120,7 +120,6 @@ import "@argument-assertions/node-assert-plus/register-global";
 Bei allen Methoden, die *nicht* Teil der Kern-API `assert` von Node sind, wird davon ausgegangen, dass sie den zu validierenden **Wert** gefolgt von einer
 Zeichenfolge **label** entgegennehmen, z. B. `assert.FUNCTIONNAME(value, label)`.
 Diese Bezeichnung wird nicht als Meldung interpretiert.
-Wenn die Assertion fehlschlägt, wird ein `AssertionError` mit einer Meldung in der folgenden Form ausgelöst:
 
 ```js
 process.env["NODE_ENV"] = 'development';          // Kann jede *beliebige* Zeichenkette zum aktivieren des Strikt-Modus sein
