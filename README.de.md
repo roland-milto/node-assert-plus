@@ -1,8 +1,14 @@
 [Switch to English](README.md)
 
-# `@argument-assertions/node-assert-plus`
+# [`@argument-assertions/node-assert-plus`](https://www.npmjs.com/package/@argument-assertions/node-assert-plus)
 
-[`@argument-assertions/node-assert-plus`](https://www.npmjs.com/package/@argument-assertions/node-assert-plus) ist eine
+![NPM version](https://img.shields.io/npm/v/@argument-assertions/node-assert-plus?color=blue)
+![Typescript project](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
+![ESM supported](https://img.shields.io/badge/ESM-supported-brightgreen)
+
+## Was ist `node-assert-plus`?
+
+`@argument-assertions/node-assert-plus` ist eine
 moderne und sichere **Assertion-Bibliothek**, die von [Roland Milto](https://roland.milto.de/) in TypeScript geschrieben wurde und als
 erweiterte Implementierung der in Node integrierten [`node:assert/strict`](https://nodejs.org/api/assert.html) konzipiert ist.
 
@@ -25,22 +31,23 @@ import { assert } from '@argument-assertions/node-assert-plus';
 
 process.env.NODE_ENV = 'development';
 
-function checkAccountDetails(options, callback) {
-	assert.plainObject(options, 'options');
-	assert.integer(options.id, 'options.id');
-	assert.string(options.name, 'options.name');
-	assert.arrayOfString(options.email, 'options.email');
-	assert.object(options.dateObject, 'options.dateObject');
-	assert.boolean(options.isManager, 'options.isManager');
-	assert.number(options.process, 'options.process');
-	assert.function(callback, 'callback');
+function checkAccountDetails(options, callback)
+{
+  assert.plainObject(options, 'options');
+  assert.integer(options.id, 'options.id');
+  assert.string(options.name, 'options.name');
+  assert.arrayOfString(options.email, 'options.email');
+  assert.object(options.dateObject, 'options.dateObject');
+  assert.boolean(options.isManager, 'options.isManager');
+  assert.number(options.process, 'options.process');
+  assert.function(callback, 'callback');
 
-	// Do whatever you want with the account details!
-	callback(null, {});
+  // Do whatever you want with the account details!
+  callback(null, {});
 }
 ```
 
----
+<br>
 
 ## Was ist auch neu?
 
@@ -75,7 +82,7 @@ Die folgenden Aliase wurden zu den bestehenden Assertions hinzugefügt und könn
 | `assert.optionalFunction` | `assert.optionalFunc`   | - | `assert.optionalArrayOfFunction` | `assert.optionalArrayOfFunc`   |
 | `assert.optionalRegEx`    | `assert.optionalRegexp` | - | `assert.optionalArrayOfRegEx`    | `assert.optionalArrayOfRegexp` |
 
----
+<br>
 
 ## Legacy-Projekte
 
@@ -92,7 +99,7 @@ eine minimale Bundle-Größe, ist einfach zu verwenden und gut dokumentiert.
 Das veraltete `process.env.NODE_NDEBUG` wurde durch das moderne `process.env.NODE_ENV` ersetzt.
 Dies muss in Ihrem Code entsprechend angepasst werden.
 
----
+<br>
 
 ## Wie ist `@argument-assertions/node-assert-plus` zu verwenden?
 
@@ -100,6 +107,33 @@ Dies muss in Ihrem Code entsprechend angepasst werden.
 
 ```bash
 npm install @argument-assertions/node-assert-plus
+```
+
+### package.json
+
+Stelle sicher, dass `@argument-assertions/node-assert-plus` in Deine `package.json`-Abhängigkeiten aufgenommen ist und immer die neueste
+Version verwendet wird:
+
+```json
+{
+	"dependencies": {
+		"@argument-assertions/node-assert-plus": "*"
+	}
+}
+```
+
+### tsconfig.json
+
+Da `@argument-assertions/node-assert-plus` als ESM-Modul exportiert wird, ist es erforderlich,
+die Option `moduleResolution` in der `tsconfig.json`-Datei anzupassen,
+um Fehlermeldungen durch den TypeScript-Compiler zu vermeiden:
+
+```json
+{
+	"compilerOptions": {
+		"moduleResolution": "NodeNext"
+	}
+}
 ```
 
 ### Importieren
@@ -167,109 +201,75 @@ at file:///C:/@argument-assertions/node-assert-plus/tests/test.mjs:11:8
 at ModuleJob.run (node:internal/modules/esm/module_job:271:25)
 at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:547:26)
 at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5) {
- generatedMessage: false,
- code: 'ERR_ASSERTION',
- actual: 'number',
- expected: 'integer',
- operator: '==='
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'number',
+  expected: 'integer',
+  operator: '==='
 }
 ```
 
----
+<br>
 
-## Methodenliste
+## Methoden
 
-### Einfache Assertions
-- assert.array(argument, message)
-- assert.bigint(argument, message)
-- assert.boolean(argument, message) *or* assert.bool(argument, message)
-- assert.buffer(argument, message)
-- assert.date(argument, message)
-- assert.finite(argument, message)
-- assert.function(argument, message) *or* assert.func(argument, message)
-- assert.integer(argument, message)
-- assert.null(argument, message)
-- assert.nullOrUndefined(argument, message)
-- assert.number(argument, message)
-- assert.object(argument, message)
-- assert.plainObject(argument, message)
-- assert.promise(argument, message)
-- assert.regexp(argument, message) *or* assert.regEx(argument, message)
-- assert.stream(argument, message)
-- assert.string(argument, message)
-- assert.symbol(argument, message)
-- assert.undefined(argument, message)
-- assert.uuid(argument, message)
-- assert.validDate(argument, message)
+### Erforderliche Assertions
 
-### Array Assertions
-- assert.arrayOfArray(argument, message)
-- assert.arrayOfBigInt(argument, message)
-- assert.arrayOfBoolean(argument, message) *or* assert.arrayOfBool(argument, message)
-- assert.arrayOfBuffer(argument, message)
-- assert.arrayOfDate(argument, message)
-- assert.arrayOfFinite(argument, message)
-- assert.arrayOfFunction(argument, message) *or* assert.arrayOfFunc(argument, message)
-- assert.arrayOfInteger(argument, message)
-- assert.arrayOfNull(argument, message)
-- assert.arrayOfNullOrUndefined(argument, message)
-- assert.arrayOfNumber(argument, message)
-- assert.arrayOfObject(argument, message)
-- assert.arrayOfPlainObject(argument, message)
-- assert.arrayOfPromise(argument, message)
-- assert.arrayOfRegexp(argument, message) *or* assert.arrayOfRegEx(argument, message)
-- assert.arrayOfStream(argument, message)
-- assert.arrayOfString(argument, message)
-- assert.arrayOfSymbol(argument, message)
-- assert.arrayOfUuid(argument, message)
-- assert.arrayOfUndefined(argument, message)
-- assert.arrayOfValidDate(argument, message)
+| Einzelwertprüfung                      | Array-Prüfung                                 | Kurzbeschreibung                                  |
+|----------------------------------------|-----------------------------------------------|---------------------------------------------------|
+| `assert.array(value, label)`           | `assert.arrayOfArray(array, label)`           | Prüft, ob Wert(e) ein Array sind.                 |
+| `assert.bigint(value, label)`          | `assert.arrayOfBigInt(array, label)`          | Prüft, ob Wert(e) ein BigInt sind.                |
+| `assert.boolean(value, label)`         | `assert.arrayOfBoolean(array, label)`         | Prüft, ob Wert(e) ein Boolean sind.               |
+| `assert.bool(value, label)`            | `assert.arrayOfBool(array, label)`            | Alias für die Boolean-Prüfung.                    |
+| `assert.buffer(value, label)`          | `assert.arrayOfBuffer(array, label)`          | Prüft, ob Wert(e) ein Buffer sind.                |
+| `assert.date(value, label)`            | `assert.arrayOfDate(array, label)`            | Prüft, ob Wert(e) ein Date-Objekt sind.           |
+| `assert.finite(value, label)`          | `assert.arrayOfFinite(array, label)`          | Prüft, ob Wert(e) eine endliche Zahl sind.        |
+| `assert.function(value, label)`        | `assert.arrayOfFunction(array, label)`        | Prüft, ob Wert(e) eine Funktion sind.             |
+| `assert.func(value, label)`            | `assert.arrayOfFunc(array, label)`            | Alias für die Funktions-Prüfung.                  |
+| `assert.integer(value, label)`         | `assert.arrayOfInteger(array, label)`         | Prüft, ob Wert(e) eine Ganzzahl sind.             |
+| `assert.null(value, label)`            | `assert.arrayOfNull(array, label)`            | Prüft, ob Wert(e) exakt `null` sind.              |
+| `assert.nullOrUndefined(value, label)` | `assert.arrayOfNullOrUndefined(array, label)` | Prüft, ob Wert(e) `null` oder `undefined` sind.   |
+| `assert.number(value, label)`          | `assert.arrayOfNumber(array, label)`          | Prüft, ob Wert(e) eine Zahl sind.                 |
+| `assert.object(value, label)`          | `assert.arrayOfObject(array, label)`          | Prüft, ob Wert(e) ein Objekt sind.                |
+| `assert.plainObject(value, label)`     | `assert.arrayOfPlainObject(array, label)`     | Prüft, ob Wert(e) ein einfaches Objekt ({}) sind. |
+| `assert.promise(value, label)`         | `assert.arrayOfPromise(array, label)`         | Prüft, ob Wert(e) ein Promise sind.               |
+| `assert.regexp(value, label)`          | `assert.arrayOfRegexp(array, label)`          | Prüft, ob Wert(e) ein regulärer Ausdruck sind.    |
+| `assert.regEx(value, label)`           | `assert.arrayOfRegEx(array, label)`           | Alias für die Regexp-Prüfung.                     |
+| `assert.stream(value, label)`          | `assert.arrayOfStream(array, label)`          | Prüft, ob Wert(e) ein Stream sind.                |
+| `assert.string(value, label)`          | `assert.arrayOfString(array, label)`          | Prüft, ob Wert(e) ein String sind.                |
+| `assert.symbol(value, label)`          | `assert.arrayOfSymbol(array, label)`          | Prüft, ob Wert(e) ein Symbol sind.                |
+| `assert.undefined(value, label)`       | `assert.arrayOfUndefined(array, label)`       | Prüft, ob Wert(e) exakt `undefined` sind.         |
+| `assert.uuid(value, label)`            | `assert.arrayOfUuid(array, label)`            | Prüft, ob Wert(e) eine gültige UUID sind.         |
+| `assert.validDate(value, label)`       | `assert.arrayOfValidDate(array, label)`       | Prüft, ob Wert(e) ein gültiges Date-Objekt sind.  |
 
-### Einfache Assertions (optional)
-- assert.optionalArray(argument, message)
-- assert.optionalBigInt(argument, message)
-- assert.optionalBoolean(argument, message) *or* assert.optionalBool(argument, message)
-- assert.optionalBuffer(argument, message)
-- assert.optionalDate(argument, message)
-- assert.optionalFinite(argument, message)
-- assert.optionalFunction(argument, message) *or* assert.optionalFunc(argument, message)
-- assert.optionalInteger(argument, message)
-- assert.optionalNull(argument, message)
-- assert.optionalNullOrUndefined(argument, message)
-- assert.optionalNumber(argument, message)
-- assert.optionalObject(argument, message)
-- assert.optionalPlainObject(argument, message)
-- assert.optionalPromise(argument, message)
-- assert.optionalRegEx(argument, message) *or* assert.optionalArrayOfRegexp(argument, message)
-- assert.optionalStream(argument, message)
-- assert.optionalString(argument, message)
-- assert.optionalSymbol(argument, message)
-- assert.optionalUndefined(argument, message)
-- assert.optionalUuid(argument, message)
-- assert.optionalValidDate(argument, message)
+### Optionale Assertions
 
-### Array Assertions (optional)
-- assert.optionalArrayOfArray(argument, message)
-- assert.optionalArrayOfBigInt(argument, message)
-- assert.optionalArrayOfBoolean(argument, message) *or* assert.optionalArrayOfBool(argument, message)
-- assert.optionalArrayOfBuffer(argument, message)
-- assert.optionalArrayOfDate(argument, message)
-- assert.optionalArrayOfFinite(argument, message)
-- assert.optionalArrayOfFunction(argument, message) *or* assert.optionalArrayOfFunc(argument, message)
-- assert.optionalArrayOfInteger(argument, message)
-- assert.optionalArrayOfNull(argument, message)
-- assert.optionalArrayOfNullOrUndefined(argument, message)
-- assert.optionalArrayOfNumber(argument, message)
-- assert.optionalArrayOfObject(argument, message)
-- assert.optionalArrayOfPlainObject(argument, message)
-- assert.optionalArrayOfPromise(argument, message)
-- assert.optionalArrayOfRegEx(argument, message) *or* assert.optionalArrayOfRegexp(argument, message)
-- assert.optionalArrayOfStream(argument, message)
-- assert.optionalArrayOfString(argument, message)
-- assert.optionalArrayOfSymbol(argument, message)
-- assert.optionalArrayOfUuid(argument, message)
-- assert.optionalArrayOfUndefined(argument, message)
-- assert.optionalArrayOfValidDate(argument, message)
+| Einzelwertprüfung (optional)                   | Array-Prüfung (optional)                              | Kurzbeschreibung                                          |
+|------------------------------------------------|-------------------------------------------------------|-----------------------------------------------------------|
+| `assert.optionalArray(value, label)`           | `assert.optionalArrayOfArray(array, label)`           | Prüft optional, ob Wert(e) ein Array sind.                |
+| `assert.optionalBigInt(value, label)`          | `assert.optionalArrayOfBigInt(array, label)`          | Prüft optional, ob Wert(e) ein BigInt sind.               |
+| `assert.optionalBoolean(value, label)`         | `assert.optionalArrayOfBoolean(array, label)`         | Prüft optional, ob Wert(e) ein Boolean sind.              |
+| `assert.optionalBool(value, label)`            | `assert.optionalArrayOfBool(array, label)`            | Alias für die optionale Boolean-Prüfung.                  |
+| `assert.optionalBuffer(value, label)`          | `assert.optionalArrayOfBuffer(array, label)`          | Prüft optional, ob Wert(e) ein Buffer sind.               |
+| `assert.optionalDate(value, label)`            | `assert.optionalArrayOfDate(array, label)`            | Prüft optional, ob Wert(e) ein Date-Objekt sind.          |
+| `assert.optionalFinite(value, label)`          | `assert.optionalArrayOfFinite(array, label)`          | Prüft optional, ob Wert(e) eine endliche Zahl sind.       |
+| `assert.optionalFunction(value, label)`        | `assert.optionalArrayOfFunction(array, label)`        | Prüft optional, ob Wert(e) eine Funktion sind.            |
+| `assert.optionalFunc(value, label)`            | `assert.optionalArrayOfFunc(array, label)`            | Alias für die optionale Funktions-Prüfung.                |
+| `assert.optionalInteger(value, label)`         | `assert.optionalArrayOfInteger(array, label)`         | Prüft optional, ob Wert(e) eine Ganzzahl sind.            |
+| `assert.optionalNull(value, label)`            | `assert.optionalArrayOfNull(array, label)`            | Prüft optional, ob Wert(e) exakt `null` sind.             |
+| `assert.optionalNullOrUndefined(value, label)` | `assert.optionalArrayOfNullOrUndefined(array, label)` | Prüft optional, ob Wert(e) `null` oder `undefined` sind.  |
+| `assert.optionalNumber(value, label)`          | `assert.optionalArrayOfNumber(array, label)`          | Prüft optional, ob Wert(e) eine Zahl sind.                |
+| `assert.optionalObject(value, label)`          | `assert.optionalArrayOfObject(array, label)`          | Prüft optional, ob Wert(e) ein Objekt sind.               |
+| `assert.optionalPlainObject(value, label)`     | `assert.optionalArrayOfPlainObject(array, label)`     | Prüft optional, ob Wert(e) ein einfaches Objekt sind.     |
+| `assert.optionalPromise(value, label)`         | `assert.optionalArrayOfPromise(array, label)`         | Prüft optional, ob Wert(e) ein Promise sind.              |
+| `assert.optionalRegexp(value, label)`          | `assert.optionalArrayOfRegexp(array, label)`          | Prüft optional, ob Wert(e) ein regulärer Ausdruck sind.   |
+| `assert.optionalRegEx(value, label)`           | `assert.optionalArrayOfRegEx(array, label)`           | Alias für die optionale Regexp-Prüfung.                   |
+| `assert.optionalStream(value, label)`          | `assert.optionalArrayOfStream(array, label)`          | Prüft optional, ob Wert(e) ein Stream sind.               |
+| `assert.optionalString(value, label)`          | `assert.optionalArrayOfString(array, label)`          | Prüft optional, ob Wert(e) ein String sind.               |
+| `assert.optionalSymbol(value, label)`          | `assert.optionalArrayOfSymbol(array, label)`          | Prüft optional, ob Wert(e) ein Symbol sind.               |
+| `assert.optionalUndefined(value, label)`       | `assert.optionalArrayOfUndefined(array, label)`       | Prüft optional, ob Wert(e) exakt `undefined` sind.        |
+| `assert.optionalUuid(value, label)`            | `assert.optionalArrayOfUuid(array, label)`            | Prüft optional, ob Wert(e) eine gültige UUID sind.        |
+| `assert.optionalValidDate(value, label)`       | `assert.optionalArrayOfValidDate(array, label)`       | Prüft optional, ob Wert(e) ein gültiges Date-Objekt sind. |
 
 
 ### Strict Node.js assertions
@@ -295,7 +295,7 @@ Zusätzlich zu diesen Prüfungen stehen alle von `node:assert/strict` bereitgest
 * [assert.throws(fn\[, error\]\[, message\])](https://nodejs.org/api/assert.html#assertthrowsfn-error-message)
 * [assert.partialDeepStrictEqual(actual, expected\[, message\])](https://nodejs.org/api/assert.html#assertpartialdeepstrictequalactual-expected-message)
 
----
+<br>
 
 ## Unterstützung
 Wenn Sie ebenfalls einen Beitrag zur Bibliothek leisten möchten, sind Sie herzlich dazu eingeladen.
