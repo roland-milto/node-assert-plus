@@ -1,6 +1,6 @@
 import { assert } from '../dist/index.js';
 
-process.env.NODE_ENV = 'development';             // Can be *any* string to enable strict mode
+process.env["NODE_ENV"] = 'development';             // Can be *any* string to enable strict mode
 
 /*
 assert.integer(42.4, "my integer failure label"); // Failure, maybe you should use assert.number instead? ;)
