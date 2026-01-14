@@ -5,7 +5,7 @@
   ],
   "homepage": "https://roland.milto.de/projekte/argument-assertions#node-assert-plus",
   "name": "@argument-assertions/node-assert-plus",
-  "version": "2026.1.7",
+  "version": "2026.1.14",
   "license": "MIT",
   "description": "Node.js assertion library on top of the built-in assert module with strict and flexible validation. Much more secure and up to 10 times faster than the original 'node-assert-plus', 80 % less CPU usage and memory consumption.",
   "repository": {
