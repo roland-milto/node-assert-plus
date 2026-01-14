@@ -214,9 +214,9 @@ at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5) 
 
 ## Methods
 
-Two parameters are always passed for single value checks and array checks.
-The first parameter specifies what is to be checked (value or an array of values).
-The second parameter specifies the label to be used in the error message.
+**Two parameters** are always passed for single value checks and array checks.
+The **first parameter** specifies what is to be checked (value or an array of values).
+The **second parameter** specifies the label to be used in the error message.
 
 ```ts
 const value = 42;
