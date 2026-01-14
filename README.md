@@ -116,9 +116,9 @@ Ensure that `@argument-assertions/node-assert-plus` is included in your `package
 
 ```json
 {
-	"dependencies": {
-		"@argument-assertions/node-assert-plus": "*"
-	}
+  "dependencies": {
+    "@argument-assertions/node-assert-plus": "*"
+  }
 }
 ```
 
@@ -130,9 +130,9 @@ to avoid error messages from the TypeScript compiler:
 
 ```json
 {
-	"compilerOptions": {
-		"moduleResolution": "NodeNext"
-	}
+  "compilerOptions": {
+    "moduleResolution": "NodeNext"
+  }
 }
 ```
 

@@ -116,9 +116,9 @@ Version verwendet wird:
 
 ```json
 {
-	"dependencies": {
-		"@argument-assertions/node-assert-plus": "*"
-	}
+  "dependencies": {
+    "@argument-assertions/node-assert-plus": "*"
+  }
 }
 ```
 
@@ -130,9 +130,9 @@ um Fehlermeldungen durch den TypeScript-Compiler zu vermeiden:
 
 ```json
 {
-	"compilerOptions": {
-		"moduleResolution": "NodeNext"
-	}
+  "compilerOptions": {
+    "moduleResolution": "NodeNext"
+  }
 }
 ```
 
