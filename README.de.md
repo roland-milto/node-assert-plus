@@ -213,63 +213,79 @@ at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5) 
 
 ## Methoden
 
+Für die Einzelwertprüfung und die Array-Prüfung werden immer **zwei Parameter** übergeben.
+Der **erste Parameter** gibt an, was geprüft werden soll (Wert oder ein Array von Werten).
+Der **zweite Parameter** gibt das Label an, das in der Fehlermeldung verwendet werden soll.
+
+```ts
+const value = 42;
+const label = "my integer success label";
+
+// Beispiel Einzelwerprüfung:
+assert.integer(value, label);
+
+// Beispiel Array-Prüfung:
+const array = [1, 2, 3];
+assert.arrayOfInteger(array, label)
+```
+
 ### Erforderliche Assertions
 
-| Einzelwertprüfung                      | Array-Prüfung                                 | Kurzbeschreibung                                  |
-|----------------------------------------|-----------------------------------------------|---------------------------------------------------|
-| `assert.array(value, label)`           | `assert.arrayOfArray(array, label)`           | Prüft, ob Wert(e) ein Array sind.                 |
-| `assert.bigint(value, label)`          | `assert.arrayOfBigInt(array, label)`          | Prüft, ob Wert(e) ein BigInt sind.                |
-| `assert.boolean(value, label)`         | `assert.arrayOfBoolean(array, label)`         | Prüft, ob Wert(e) ein Boolean sind.               |
-| `assert.bool(value, label)`            | `assert.arrayOfBool(array, label)`            | Alias für die Boolean-Prüfung.                    |
-| `assert.buffer(value, label)`          | `assert.arrayOfBuffer(array, label)`          | Prüft, ob Wert(e) ein Buffer sind.                |
-| `assert.date(value, label)`            | `assert.arrayOfDate(array, label)`            | Prüft, ob Wert(e) ein Date-Objekt sind.           |
-| `assert.finite(value, label)`          | `assert.arrayOfFinite(array, label)`          | Prüft, ob Wert(e) eine endliche Zahl sind.        |
-| `assert.function(value, label)`        | `assert.arrayOfFunction(array, label)`        | Prüft, ob Wert(e) eine Funktion sind.             |
-| `assert.func(value, label)`            | `assert.arrayOfFunc(array, label)`            | Alias für die Funktions-Prüfung.                  |
-| `assert.integer(value, label)`         | `assert.arrayOfInteger(array, label)`         | Prüft, ob Wert(e) eine Ganzzahl sind.             |
-| `assert.null(value, label)`            | `assert.arrayOfNull(array, label)`            | Prüft, ob Wert(e) exakt `null` sind.              |
-| `assert.nullOrUndefined(value, label)` | `assert.arrayOfNullOrUndefined(array, label)` | Prüft, ob Wert(e) `null` oder `undefined` sind.   |
-| `assert.number(value, label)`          | `assert.arrayOfNumber(array, label)`          | Prüft, ob Wert(e) eine Zahl sind.                 |
-| `assert.object(value, label)`          | `assert.arrayOfObject(array, label)`          | Prüft, ob Wert(e) ein Objekt sind.                |
-| `assert.plainObject(value, label)`     | `assert.arrayOfPlainObject(array, label)`     | Prüft, ob Wert(e) ein einfaches Objekt ({}) sind. |
-| `assert.promise(value, label)`         | `assert.arrayOfPromise(array, label)`         | Prüft, ob Wert(e) ein Promise sind.               |
-| `assert.regexp(value, label)`          | `assert.arrayOfRegexp(array, label)`          | Prüft, ob Wert(e) ein regulärer Ausdruck sind.    |
-| `assert.regEx(value, label)`           | `assert.arrayOfRegEx(array, label)`           | Alias für die Regexp-Prüfung.                     |
-| `assert.stream(value, label)`          | `assert.arrayOfStream(array, label)`          | Prüft, ob Wert(e) ein Stream sind.                |
-| `assert.string(value, label)`          | `assert.arrayOfString(array, label)`          | Prüft, ob Wert(e) ein String sind.                |
-| `assert.symbol(value, label)`          | `assert.arrayOfSymbol(array, label)`          | Prüft, ob Wert(e) ein Symbol sind.                |
-| `assert.undefined(value, label)`       | `assert.arrayOfUndefined(array, label)`       | Prüft, ob Wert(e) exakt `undefined` sind.         |
-| `assert.uuid(value, label)`            | `assert.arrayOfUuid(array, label)`            | Prüft, ob Wert(e) eine gültige UUID sind.         |
-| `assert.validDate(value, label)`       | `assert.arrayOfValidDate(array, label)`       | Prüft, ob Wert(e) ein gültiges Date-Objekt sind.  |
+| Einzelwertprüfung      | Array-Prüfung                 | Kurzbeschreibung                                  |
+|------------------------|-------------------------------|---------------------------------------------------|
+| assert.array           | assert.arrayOfArray           | Prüft, ob Wert(e) ein Array sind.                 |
+| assert.bigint          | assert.arrayOfBigInt          | Prüft, ob Wert(e) ein BigInt sind.                |
+| assert.boolean         | assert.arrayOfBoolean         | Prüft, ob Wert(e) ein Boolean sind.               |
+| assert.bool            | assert.arrayOfBool            | Alias für die Boolean-Prüfung.                    |
+| assert.buffer          | assert.arrayOfBuffer          | Prüft, ob Wert(e) ein Buffer sind.                |
+| assert.date            | assert.arrayOfDate            | Prüft, ob Wert(e) ein Date-Objekt sind.           |
+| assert.finite          | assert.arrayOfFinite          | Prüft, ob Wert(e) eine endliche Zahl sind.        |
+| assert.function        | assert.arrayOfFunction        | Prüft, ob Wert(e) eine Funktion sind.             |
+| assert.func            | assert.arrayOfFunc            | Alias für die Funktions-Prüfung.                  |
+| assert.integer         | assert.arrayOfInteger         | Prüft, ob Wert(e) eine Ganzzahl sind.             |
+| assert.null            | assert.arrayOfNull            | Prüft, ob Wert(e) exakt `null` sind.              |
+| assert.nullOrUndefined | assert.arrayOfNullOrUndefined | Prüft, ob Wert(e) `null` oder `undefined` sind.   |
+| assert.number          | assert.arrayOfNumber          | Prüft, ob Wert(e) eine Zahl sind.                 |
+| assert.object          | assert.arrayOfObject          | Prüft, ob Wert(e) ein Objekt sind.                |
+| assert.plainObject     | assert.arrayOfPlainObject     | Prüft, ob Wert(e) ein einfaches Objekt ({}) sind. |
+| assert.promise         | assert.arrayOfPromise         | Prüft, ob Wert(e) ein Promise sind.               |
+| assert.regexp          | assert.arrayOfRegexp          | Prüft, ob Wert(e) ein regulärer Ausdruck sind.    |
+| assert.regEx           | assert.arrayOfRegEx           | Alias für die Regexp-Prüfung.                     |
+| assert.stream          | assert.arrayOfStream          | Prüft, ob Wert(e) ein Stream sind.                |
+| assert.string          | assert.arrayOfString          | Prüft, ob Wert(e) ein String sind.                |
+| assert.symbol          | assert.arrayOfSymbol          | Prüft, ob Wert(e) ein Symbol sind.                |
+| assert.undefined       | assert.arrayOfUndefined       | Prüft, ob Wert(e) exakt `undefined` sind.         |
+| assert.uuid            | assert.arrayOfUuid            | Prüft, ob Wert(e) eine gültige UUID sind.         |
+| assert.validDate       | assert.arrayOfValidDate       | Prüft, ob Wert(e) ein gültiges Date-Objekt sind.  |
 
 ### Optionale Assertions
 
-| Einzelwertprüfung (optional)                   | Array-Prüfung (optional)                              | Kurzbeschreibung                                          |
-|------------------------------------------------|-------------------------------------------------------|-----------------------------------------------------------|
-| `assert.optionalArray(value, label)`           | `assert.optionalArrayOfArray(array, label)`           | Prüft optional, ob Wert(e) ein Array sind.                |
-| `assert.optionalBigInt(value, label)`          | `assert.optionalArrayOfBigInt(array, label)`          | Prüft optional, ob Wert(e) ein BigInt sind.               |
-| `assert.optionalBoolean(value, label)`         | `assert.optionalArrayOfBoolean(array, label)`         | Prüft optional, ob Wert(e) ein Boolean sind.              |
-| `assert.optionalBool(value, label)`            | `assert.optionalArrayOfBool(array, label)`            | Alias für die optionale Boolean-Prüfung.                  |
-| `assert.optionalBuffer(value, label)`          | `assert.optionalArrayOfBuffer(array, label)`          | Prüft optional, ob Wert(e) ein Buffer sind.               |
-| `assert.optionalDate(value, label)`            | `assert.optionalArrayOfDate(array, label)`            | Prüft optional, ob Wert(e) ein Date-Objekt sind.          |
-| `assert.optionalFinite(value, label)`          | `assert.optionalArrayOfFinite(array, label)`          | Prüft optional, ob Wert(e) eine endliche Zahl sind.       |
-| `assert.optionalFunction(value, label)`        | `assert.optionalArrayOfFunction(array, label)`        | Prüft optional, ob Wert(e) eine Funktion sind.            |
-| `assert.optionalFunc(value, label)`            | `assert.optionalArrayOfFunc(array, label)`            | Alias für die optionale Funktions-Prüfung.                |
-| `assert.optionalInteger(value, label)`         | `assert.optionalArrayOfInteger(array, label)`         | Prüft optional, ob Wert(e) eine Ganzzahl sind.            |
-| `assert.optionalNull(value, label)`            | `assert.optionalArrayOfNull(array, label)`            | Prüft optional, ob Wert(e) exakt `null` sind.             |
-| `assert.optionalNullOrUndefined(value, label)` | `assert.optionalArrayOfNullOrUndefined(array, label)` | Prüft optional, ob Wert(e) `null` oder `undefined` sind.  |
-| `assert.optionalNumber(value, label)`          | `assert.optionalArrayOfNumber(array, label)`          | Prüft optional, ob Wert(e) eine Zahl sind.                |
-| `assert.optionalObject(value, label)`          | `assert.optionalArrayOfObject(array, label)`          | Prüft optional, ob Wert(e) ein Objekt sind.               |
-| `assert.optionalPlainObject(value, label)`     | `assert.optionalArrayOfPlainObject(array, label)`     | Prüft optional, ob Wert(e) ein einfaches Objekt sind.     |
-| `assert.optionalPromise(value, label)`         | `assert.optionalArrayOfPromise(array, label)`         | Prüft optional, ob Wert(e) ein Promise sind.              |
-| `assert.optionalRegexp(value, label)`          | `assert.optionalArrayOfRegexp(array, label)`          | Prüft optional, ob Wert(e) ein regulärer Ausdruck sind.   |
-| `assert.optionalRegEx(value, label)`           | `assert.optionalArrayOfRegEx(array, label)`           | Alias für die optionale Regexp-Prüfung.                   |
-| `assert.optionalStream(value, label)`          | `assert.optionalArrayOfStream(array, label)`          | Prüft optional, ob Wert(e) ein Stream sind.               |
-| `assert.optionalString(value, label)`          | `assert.optionalArrayOfString(array, label)`          | Prüft optional, ob Wert(e) ein String sind.               |
-| `assert.optionalSymbol(value, label)`          | `assert.optionalArrayOfSymbol(array, label)`          | Prüft optional, ob Wert(e) ein Symbol sind.               |
-| `assert.optionalUndefined(value, label)`       | `assert.optionalArrayOfUndefined(array, label)`       | Prüft optional, ob Wert(e) exakt `undefined` sind.        |
-| `assert.optionalUuid(value, label)`            | `assert.optionalArrayOfUuid(array, label)`            | Prüft optional, ob Wert(e) eine gültige UUID sind.        |
-| `assert.optionalValidDate(value, label)`       | `assert.optionalArrayOfValidDate(array, label)`       | Prüft optional, ob Wert(e) ein gültiges Date-Objekt sind. |
+| Einzelwertprüfung (optional)   | Array-Prüfung (optional)              | Kurzbeschreibung                                          |
+|--------------------------------|---------------------------------------|-----------------------------------------------------------|
+| assert.optionalArray           | assert.optionalArrayOfArray           | Prüft optional, ob Wert(e) ein Array sind.                |
+| assert.optionalBigInt          | assert.optionalArrayOfBigInt          | Prüft optional, ob Wert(e) ein BigInt sind.               |
+| assert.optionalBoolean         | assert.optionalArrayOfBoolean         | Prüft optional, ob Wert(e) ein Boolean sind.              |
+| assert.optionalBool            | assert.optionalArrayOfBool            | Alias für die optionale Boolean-Prüfung.                  |
+| assert.optionalBuffer          | assert.optionalArrayOfBuffer          | Prüft optional, ob Wert(e) ein Buffer sind.               |
+| assert.optionalDate            | assert.optionalArrayOfDate            | Prüft optional, ob Wert(e) ein Date-Objekt sind.          |
+| assert.optionalFinite          | assert.optionalArrayOfFinite          | Prüft optional, ob Wert(e) eine endliche Zahl sind.       |
+| assert.optionalFunction        | assert.optionalArrayOfFunction        | Prüft optional, ob Wert(e) eine Funktion sind.            |
+| assert.optionalFunc            | assert.optionalArrayOfFunc            | Alias für die optionale Funktions-Prüfung.                |
+| assert.optionalInteger         | assert.optionalArrayOfInteger         | Prüft optional, ob Wert(e) eine Ganzzahl sind.            |
+| assert.optionalNull            | assert.optionalArrayOfNull            | Prüft optional, ob Wert(e) exakt `null` sind.             |
+| assert.optionalNullOrUndefined | assert.optionalArrayOfNullOrUndefined | Prüft optional, ob Wert(e) `null` oder `undefined` sind.  |
+| assert.optionalNumber          | assert.optionalArrayOfNumber          | Prüft optional, ob Wert(e) eine Zahl sind.                |
+| assert.optionalObject          | assert.optionalArrayOfObject          | Prüft optional, ob Wert(e) ein Objekt sind.               |
+| assert.optionalPlainObject     | assert.optionalArrayOfPlainObject     | Prüft optional, ob Wert(e) ein einfaches Objekt sind.     |
+| assert.optionalPromise         | assert.optionalArrayOfPromise         | Prüft optional, ob Wert(e) ein Promise sind.              |
+| assert.optionalRegexp          | assert.optionalArrayOfRegexp          | Prüft optional, ob Wert(e) ein regulärer Ausdruck sind.   |
+| assert.optionalRegEx           | assert.optionalArrayOfRegEx           | Alias für die optionale Regexp-Prüfung.                   |
+| assert.optionalStream          | assert.optionalArrayOfStream          | Prüft optional, ob Wert(e) ein Stream sind.               |
+| assert.optionalString          | assert.optionalArrayOfString          | Prüft optional, ob Wert(e) ein String sind.               |
+| assert.optionalSymbol          | assert.optionalArrayOfSymbol          | Prüft optional, ob Wert(e) ein Symbol sind.               |
+| assert.optionalUndefined       | assert.optionalArrayOfUndefined       | Prüft optional, ob Wert(e) exakt `undefined` sind.        |
+| assert.optionalUuid            | assert.optionalArrayOfUuid            | Prüft optional, ob Wert(e) eine gültige UUID sind.        |
+| assert.optionalValidDate       | assert.optionalArrayOfValidDate       | Prüft optional, ob Wert(e) ein gültiges Date-Objekt sind. |
 
 
 ### Strict Node.js assertions
